@@ -1,4 +1,4 @@
-## sample deployment to KIND
+## automatic agent creation in k8s cluster using admission controller
 
 
 ### create a KIND cluster
@@ -60,6 +60,8 @@ spec:
         - name: regcred
       containers:
  ```
+### create a seeker project with key 'app'
+
 ### deploy seeker agent injector
 ```
 cd seeker-k8s-agent-injector/
