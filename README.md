@@ -6,12 +6,9 @@
 kind create cluster --name seeker-inj
 ```
 
-### test helm chart
+### checkout source
 ```
 git clone https://github.com/instana/robot-shop
-cd robot-shop/K8s/helm
-helm install  robot-shop --namespace robot-shop .
-helm ls -A
 ```
 
 ### download agent injector
@@ -63,3 +60,15 @@ spec:
         - name: regcred
       containers:
  ```
+### deploy seeker agent injector
+```
+cd seeker-k8s-agent-injector/
+./deploy-seeker-agent-injector.sh
+```
+
+### test helm chart
+```
+cd robot-shop/K8s/helm
+helm install  robot-shop --namespace app .
+helm ls -A
+```
