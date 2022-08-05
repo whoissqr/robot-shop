@@ -21,7 +21,10 @@ export SEEKER_SERVER_URL=http://prd-sal-demo01.dc2.lan:8080
 curl -k -o /tmp/seeker-k8s-agent-injector.zip "${SEEKER_SERVER_URL}/rest/ui/installers/integrations/kubernetes"
 unzip -d seeker-k8s-agent-injector /tmp/seeker-k8s-agent-injector.zip
 cd seeker-k8s-agent-injector/
+```
 
+### build seeker agent inject image and push to repo
+```
 docker login registry.gitlab.com -u kk.shichao@gmail.com -p xxxyyyzzz
 export DOCKER_REGISTRY=registry.gitlab.com/apac-sig-demo/deploy-scripts/seeker-k8s
 docker build -t "${DOCKER_REGISTRY}/seeker-k8s-agent-injector:2022.8.0" .
