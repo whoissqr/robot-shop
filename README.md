@@ -37,7 +37,7 @@ kubectl create secret docker-registry regcred \
 -n seeker-agent-injector
 ```
 
-### add regcred to [seeker-k8s-agent-injector/deploy/webhook.yaml](seeker-k8s-agent-injector/deploy/webhook.yaml)
+### add regcred to [seeker-k8s-agent-injector/deploy/webhook.yaml](seeker-k8s-agent-injector/deploy/webhook.yaml#L18)
 ```
 apiVersion: apps/v1
 kind: Deployment
