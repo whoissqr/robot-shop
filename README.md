@@ -27,3 +27,36 @@ export DOCKER_REGISTRY=registry.gitlab.com/apac-sig-demo/deploy-scripts/seeker-k
 docker build -t "${DOCKER_REGISTRY}/seeker-k8s-agent-injector:2022.8.0" .
 docker push "${DOCKER_REGISTRY}/seeker-k8s-agent-injector:2022.8.0"
 ```
+
+### add a docker reg secret
+```
+kubectl create secret docker-registry regcred \
+--docker-server=registry.gitlab.com \
+--docker-username=kk.shichao@gmail.com \
+--docker-password=glpat-xxxxx \
+-n seeker-agent-injector
+```
+
+### add regcred to seeker-k8s-agent-injector/deploy/webhook.yaml
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seeker-k8s-agent-injector-webhook
+  namespace: seeker-agent-injector
+  labels:
+    app: seeker-k8s-agent-injector-webhook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: seeker-k8s-agent-injector-webhook
+  template:
+    metadata:
+      labels:
+        app: seeker-k8s-agent-injector-webhook
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+ ```
