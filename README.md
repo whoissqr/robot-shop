@@ -30,6 +30,7 @@ docker push "${DOCKER_REGISTRY}/seeker-k8s-agent-injector:2022.8.0"
 
 ### add a docker reg secret
 ```
+kubectl create ns seeker-agent-injector
 kubectl create secret docker-registry regcred \
 --docker-server=registry.gitlab.com \
 --docker-username=kk.shichao@gmail.com \
@@ -38,6 +39,7 @@ kubectl create secret docker-registry regcred \
 ```
 
 ### add regcred to [seeker-k8s-agent-injector/deploy/webhook.yaml](seeker-k8s-agent-injector/deploy/webhook.yaml#L18)
+### modify seeker server URL
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -69,6 +71,7 @@ cd seeker-k8s-agent-injector/
 ```
 
 ### test helm chart
+### modify storageClassName to gp2 if it is EKS
 ```
 cd robot-shop/K8s/helm
 helm install  robot-shop --namespace app .
